@@ -1,5 +1,7 @@
 // Mortgage App
 // Based on Paul Dichone tutorial on Packt Publising
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class MortgageApp extends StatefulWidget {
@@ -38,7 +40,7 @@ class _MortgageAppState extends State<MortgageApp> {
                       ),
                       SizedBox(height: 10),
                       Text(
-                        "\$980",
+                        " ${ ( _housePrice > 0 && _interestRate > 0.0) ? "\$${calculateMonthlyPayment(_housePrice, _interestRate, _lengthOfLoan)}" : ""}",
                         style: Theme.of(context).textTheme.headline5,
                       )
                     ],
@@ -57,7 +59,15 @@ class _MortgageAppState extends State<MortgageApp> {
                       prefixText: "House Price",
                       prefixIcon: Icon(Icons.home_outlined),
                     ),
-                    onChanged: null,
+                    onChanged: (String inputHousePrice) {
+                        try {
+                          _housePrice = double.parse(inputHousePrice);
+
+                        }catch (exception) {
+                           _housePrice = 0.0;
+                        }
+
+                      },
                   ),
                 ],
               ),
@@ -164,5 +174,31 @@ class _MortgageAppState extends State<MortgageApp> {
         ),
       ),
     );
+  }
+
+    //Monthly Payment Formula
+  /*
+   n = number of payments
+   c = monthly interest rate
+
+   int n = 12 * years;
+   double c = rate / 12.0 / 100.0;
+   double payment = loan * c * Math.pow(1 + c, n) /
+                    (Math.pow(1 + c, n) - 1);
+   */
+   calculateMonthlyPayment(double housePrice, double interest, int loanLength ) {
+     int n = 12 * loanLength;
+     double c = interest / 12.0 / 100.0;
+     double monthlyPayment = 0.0;
+
+     if (housePrice < 0 || housePrice.toString().isEmpty || housePrice == null) {
+        //no go!
+      // _homePrice = 0.0;
+     }else {
+       monthlyPayment = housePrice * c * pow(1 + c, n) / (pow(1 + c, n) - 1);
+     }
+
+
+     return monthlyPayment.toStringAsFixed(2);
   }
 }
