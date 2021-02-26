@@ -23,20 +23,40 @@ class _MortgageAppState extends State<MortgageApp> {
               margin: EdgeInsets.all(10),
               height: 120,
               child: Card(
-                elevation: 5,
-                child: Column(
-                  children: [
-                    SizedBox(height: 10),
-                    Text("Monthly Payment",
-                      style: Theme.of(context).textTheme.headline6,
+                  elevation: 5,
+                  child: Column(
+                    children: [
+                      SizedBox(height: 10),
+                      Text(
+                        "Monthly Payment",
+                        style: Theme.of(context).textTheme.headline6,
+                      ),
+                      SizedBox(height: 10),
+                      Text(
+                        "\$980",
+                        style: Theme.of(context).textTheme.headline5,
+                      )
+                    ],
+                  )),
+            ),
+            // Monthly payment card
+            Container(
+              margin: EdgeInsets.all(10),
+              child: Column(
+                children: [
+                  TextField(
+                    keyboardType:
+                        TextInputType.numberWithOptions(decimal: true),
+                    style: Theme.of(context).textTheme.bodyText1,
+                    decoration: InputDecoration(
+                      prefixText: "House Price",
+                      prefixIcon: Icon(Icons.home_outlined),
                     ),
-                    SizedBox(height: 10),
-                    Text("\$980", 
-                    style: Theme.of(context).textTheme.headline5,)
-                  ],
-                )
+                    onChanged: null,
+                  ),
+                ],
               ),
-            )
+            ),
           ],
         ),
       ),
