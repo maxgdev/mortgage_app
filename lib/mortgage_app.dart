@@ -72,7 +72,9 @@ class _MortgageAppState extends State<MortgageApp> {
                       child: Container(
                         width: 30,
                         height: 30,
-                        child: Center(child: Text("-", style: TextStyle(color: Colors.white))),
+                        child: Center(
+                            child: Text("-",
+                                style: TextStyle(color: Colors.white))),
                         margin: EdgeInsets.all(10),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
@@ -86,7 +88,9 @@ class _MortgageAppState extends State<MortgageApp> {
                       child: Container(
                         width: 30,
                         height: 30,
-                        child: Center(child: Text("+", style: TextStyle(color: Colors.white))),
+                        child: Center(
+                            child: Text("+",
+                                style: TextStyle(color: Colors.white))),
                         margin: EdgeInsets.all(10),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
@@ -98,6 +102,26 @@ class _MortgageAppState extends State<MortgageApp> {
                 )
               ],
             ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text("Interest: ",
+                    style: Theme.of(context).textTheme.headline5),
+                Text("3.5", style: Theme.of(context).textTheme.headline5),
+              ],
+            ),
+            Column(
+              children: [
+                Slider(
+                  min: 0.0,
+                  max: 20.0,
+                  activeColor: Theme.of(context).hoverColor,
+                  inactiveColor: Colors.grey,
+                  value: 1.75,
+                  onChanged: null,
+                )
+              ],
+            )
           ],
         ),
       ),
