@@ -8,6 +8,11 @@ class MortgageApp extends StatefulWidget {
 }
 
 class _MortgageAppState extends State<MortgageApp> {
+  double  _interestRate = 0.0;
+  double  _housePrice = 0.0;
+  int     _lengthOfLoan = 0;
+  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,15 +65,26 @@ class _MortgageAppState extends State<MortgageApp> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  "Length of Loan (years)",
-                  style: Theme.of(context).textTheme.bodyText1,
+                Container(
+                  margin: EdgeInsets.all(10),
+                  child: Text(
+                    "Length of Loan (years)",
+                    style: Theme.of(context).textTheme.headline6,
+                  ),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     InkWell(
-                      onTap: () => {},
+                      onTap: () {
+                        setState(() {
+                          if (_lengthOfLoan > 0) {
+                            _lengthOfLoan -= 5;
+                          } else {
+                            // do nothing 
+                          }
+                        });
+                      },
                       child: Container(
                         width: 30,
                         height: 30,
@@ -82,9 +98,20 @@ class _MortgageAppState extends State<MortgageApp> {
                         ),
                       ),
                     ),
-                    Text("25"),
+                    Container(
+                      alignment: Alignment.center,
+                      width: 35,
+                      child: Text("$_lengthOfLoan", style: Theme.of(context).textTheme.headline5)),
                     InkWell(
-                      onTap: () => {},
+                      onTap: () {
+                        setState(() {
+                          if (_lengthOfLoan < 40) {
+                            _lengthOfLoan += 5;
+                          } else {
+                            // do nothing as less than 41yrs
+                          }
+                        });
+                      },
                       child: Container(
                         width: 30,
                         height: 30,
@@ -102,12 +129,18 @@ class _MortgageAppState extends State<MortgageApp> {
                 )
               ],
             ),
+            SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Interest: ",
+                Container(
+                  child: Text(
+                    "Interest: ",
+                    style: Theme.of(context).textTheme.headline5,
+                  ),
+                ),
+                Text("${_interestRate.toStringAsFixed(2)}",
                     style: Theme.of(context).textTheme.headline5),
-                Text("3.5", style: Theme.of(context).textTheme.headline5),
               ],
             ),
             Column(
@@ -115,10 +148,15 @@ class _MortgageAppState extends State<MortgageApp> {
                 Slider(
                   min: 0.0,
                   max: 20.0,
-                  activeColor: Theme.of(context).hoverColor,
-                  inactiveColor: Colors.grey,
-                  value: 1.75,
-                  onChanged: null,
+                  divisions: 400,
+                  // activeColor: Theme.of(context).hoverColor,
+                  // inactiveColor: Colors.grey,
+                  value: _interestRate,
+                  onChanged: (double intValue) => {
+                    setState(() {
+                      _interestRate = intValue;
+                    })
+                  },
                 )
               ],
             )
