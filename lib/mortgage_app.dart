@@ -41,7 +41,7 @@ class _MortgageAppState extends State<MortgageApp> {
             ),
             // Monthly payment card
             Container(
-              margin: EdgeInsets.all(10),
+              margin: EdgeInsets.all(15),
               child: Column(
                 children: [
                   TextField(
@@ -56,6 +56,47 @@ class _MortgageAppState extends State<MortgageApp> {
                   ),
                 ],
               ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Length of Loan (years)",
+                  style: Theme.of(context).textTheme.bodyText1,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    InkWell(
+                      onTap: () => {},
+                      child: Container(
+                        width: 30,
+                        height: 30,
+                        child: Center(child: Text("-", style: TextStyle(color: Colors.white))),
+                        margin: EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Theme.of(context).accentColor,
+                        ),
+                      ),
+                    ),
+                    Text("25"),
+                    InkWell(
+                      onTap: () => {},
+                      child: Container(
+                        width: 30,
+                        height: 30,
+                        child: Center(child: Text("+", style: TextStyle(color: Colors.white))),
+                        margin: EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Theme.of(context).accentColor,
+                        ),
+                      ),
+                    ),
+                  ],
+                )
+              ],
             ),
           ],
         ),
