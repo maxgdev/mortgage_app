@@ -1,6 +1,6 @@
 # mortgage_app
 
-Flutter Mortagge Calculator App. Based on Paul Dichone tutorial on Packt Publising
+Flutter Mortgage Calculator App. Based on Paul Dichone tutorial on Packt Publising
 
 ## Credits
 - [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)

@@ -30,10 +30,11 @@ class _MortgageAppState extends State<MortgageApp> {
               margin: EdgeInsets.all(10),
               height: 120,
               child: Card(
+                color: Theme.of(context).primaryColor.withOpacity(0.6),
                   elevation: 5,
                   child: Column(
                     children: [
-                      SizedBox(height: 10),
+                      SizedBox(height: 20),
                       Text(
                         "Monthly Payment",
                         style: Theme.of(context).textTheme.headline6,
@@ -54,9 +55,10 @@ class _MortgageAppState extends State<MortgageApp> {
                   TextField(
                     keyboardType:
                         TextInputType.numberWithOptions(decimal: true),
-                    style: Theme.of(context).textTheme.bodyText1,
+                    style: Theme.of(context).textTheme.headline6,
                     decoration: InputDecoration(
-                      prefixText: "House Price",
+                      hintText: "House Price",
+                      // prefixText: "House Price",
                       prefixIcon: Icon(Icons.home_outlined),
                     ),
                     onChanged: (String inputHousePrice) {
@@ -140,18 +142,21 @@ class _MortgageAppState extends State<MortgageApp> {
               ],
             ),
             SizedBox(height: 10),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  child: Text(
-                    "Interest: ",
-                    style: Theme.of(context).textTheme.headline5,
+            Container(
+              margin: EdgeInsets.all(10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    child: Text(
+                      "Interest: ",
+                      style: Theme.of(context).textTheme.headline6,
+                    ),
                   ),
-                ),
-                Text("${_interestRate.toStringAsFixed(2)}",
-                    style: Theme.of(context).textTheme.headline5),
-              ],
+                  Text("${_interestRate.toStringAsFixed(2)} %",
+                      style: Theme.of(context).textTheme.headline6),
+                ],
+              ),
             ),
             Column(
               children: [
@@ -176,7 +181,7 @@ class _MortgageAppState extends State<MortgageApp> {
     );
   }
 
-    //Monthly Payment Formula
+  //Monthly Payment Formula
   /*
    n = number of payments
    c = monthly interest rate
